@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Dribbbo</string>
+    <string name="drawer_menu_home">Home</string>
+    <string name="drawer_menu_like">Likes</string>
+    <string name="drawer_menu_buckets">Buckets</string>
+    <string name="nav_header_name">DRIBBBO</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="like">Like</string>
+    <string name="bucket">Bucket</string>
+    <string name="share">Share</string>
+    <string name="shot_author_picture">Shot user picture</string>
+    <string name="activity_login_icon">Login Icon</string>
+    <string name="activity_login_btn">Login button</string>
+
+</resources>

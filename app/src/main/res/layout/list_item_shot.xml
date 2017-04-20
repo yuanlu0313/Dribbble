@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/list_item_shot_image"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="shot_image"
+            tools:src="@drawable/shot_image_holder"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/list_item_shot_bucket_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:drawableLeft="@drawable/ic_inbox_gray_18dp"
+                android:drawablePadding="4dp"
+                tools:text="78"/>
+
+            <TextView
+                android:id="@+id/list_item_shot_like_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/list_item_shot_bucket_count"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="24dp"
+                android:drawableLeft="@drawable/ic_favorite_gray_18dp"
+                android:drawablePadding="4dp"
+                tools:text="15"/>
+
+            <TextView
+                android:id="@+id/list_item_shot_view_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/list_item_shot_like_count"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="24dp"
+                android:drawableLeft="@drawable/ic_visibility_black_18dp"
+                android:drawablePadding="4dp"
+                tools:text="99"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/shot_clickable_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"/>
+
+</android.support.v7.widget.CardView>
