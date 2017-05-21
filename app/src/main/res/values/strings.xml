@@ -11,6 +11,18 @@
     <string name="share">Share</string>
     <string name="shot_author_picture">Shot user picture</string>
     <string name="activity_login_icon">Login Icon</string>
-    <string name="activity_login_btn">Login button</string>
+    <string name="activity_login_btn">Login</string>
+    <string name="user_profile_picture">User profile picture</string>
+    <string name="logout">Log out</string>
+    <string name="bucket_name">Bucket Name</string>
+    <string name="bucket_description">Bucket Description</string>
+    <string name="dialog_title">New bucket</string>
+    <string name="dialog_create">Create</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="menu_save">SAVE</string>
+    <string name="choose_bucket">Choose bucket</string>
+    <string name="delete_label">Delete</string>
+    <string name="undo_label">Undo</string>
+    <string name="shots">shots</string>
 
 </resources>

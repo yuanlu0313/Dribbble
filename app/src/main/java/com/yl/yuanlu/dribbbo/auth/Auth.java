@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,6 +55,7 @@ public class Auth {
         return url;
     }
 
+    //build a POST request to fetch for real token with temporary token
     public static String fetchAccessToken(String tmp_token) throws IOException{
         OkHttpClient client = new OkHttpClient();
         RequestBody postBody = new FormBody.Builder()
@@ -69,6 +71,7 @@ public class Auth {
         Response response = client.newCall(request).execute();
 
         String responseString = response.body().string();
+        if(responseString!=null) Log.i("Yuan BDG : New token : ", responseString);
         try {
             JSONObject obj = new JSONObject(responseString);
             return obj.getString(KEY_ACCESS_TOKEN);
@@ -78,5 +81,7 @@ public class Auth {
             return "";
         }
     }
+
+
 
 }

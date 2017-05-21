@@ -25,8 +25,15 @@ public class ModelUtils {
 
     public static String load_from_sp(String pref_name, Context context, String key) {
         sp = context.getSharedPreferences(pref_name, context.MODE_PRIVATE);
-        String jsonString = sp.getString(key, "");
+        String jsonString = sp.getString(key, null);  //null is default value, will return null if no key present
         return jsonString;
+    }
+
+    public static void delete_from_sp(String pref_name, Context context, String key) {
+        sp = context.getSharedPreferences(pref_name, context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.remove(key);
+        editor.apply();
     }
 
     //**static function**, so function can be called without need to creating an ModelUtils object

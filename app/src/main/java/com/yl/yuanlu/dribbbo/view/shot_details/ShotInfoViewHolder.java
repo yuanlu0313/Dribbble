@@ -10,6 +10,7 @@ import com.yl.yuanlu.dribbbo.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by LUYUAN on 4/10/2017.
@@ -24,7 +25,7 @@ public class ShotInfoViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.shot_bucket_count) TextView bucketCount;
     @BindView(R.id.shot_action_share) TextView actionShare;
     @BindView(R.id.shot_title) TextView title;
-    @BindView(R.id.shot_author_picture) ImageView authorPicture;
+    @BindView(R.id.shot_author_picture) CircleImageView authorPicture;
     @BindView(R.id.shot_author_name) TextView authorName;
     @BindView(R.id.shot_description) TextView description;
 

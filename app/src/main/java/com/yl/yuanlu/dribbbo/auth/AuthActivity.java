@@ -3,6 +3,7 @@ package com.yl.yuanlu.dribbbo.auth;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -44,7 +46,6 @@ public class AuthActivity extends AppCompatActivity {
 
         progressBar.setMax(100);
 
-
         webView.setWebViewClient(new WebViewClient() {
             //this callback function is called when the WebView is trying to load a URL
             //which in our case is the redirect URL
@@ -56,11 +57,14 @@ public class AuthActivity extends AppCompatActivity {
                     //Use Uri to get the temporary token after "code=" easily
                     //parse the URL first, then call getQueryParameter() with parameter "code"
                     Uri uri = Uri.parse(url);
-                    Log.i("YUAN_DBG", uri.getQueryParameter(KEY_CODE));
                     //going back to loginActivity, loginActivity used startActivityForResult() to start AuthActivity
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra(KEY_CODE, uri.getQueryParameter(KEY_CODE));
                     setResult(RESULT_OK, resultIntent);
+                    //clear the cookie to disable auto login after logout
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        CookieManager.getInstance().removeAllCookies(null);
+                    }
                     finish();
                 }
                 return super.shouldOverrideUrlLoading(view, url);

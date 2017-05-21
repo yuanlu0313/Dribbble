@@ -9,10 +9,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.os.AsyncTaskCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +29,7 @@ import com.yl.yuanlu.dribbbo.dribbble.Dribbble;
 import com.yl.yuanlu.dribbbo.dribbble.DribbbleException;
 import com.yl.yuanlu.dribbbo.model.Bucket;
 import com.yl.yuanlu.dribbbo.model.SpaceItemDecoration;
+import com.yl.yuanlu.dribbbo.utils.SwipeUtils;
 import com.yl.yuanlu.dribbbo.view.shot_list.ShotListFragment;
 
 import java.util.ArrayList;
@@ -127,6 +130,11 @@ public class BucketListFragment extends Fragment {
             }
         });
 
+        //swipe to delete feature
+        if(!showCheckBox) {
+            setSwipeForRecyclerView();
+        }
+
     }
 
     //to update shot number of each bucket in list
@@ -137,7 +145,8 @@ public class BucketListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if(!showCheckBox) {
+        if(!showCheckBox && !adaptor.data.isEmpty()) {
+            adaptor.clearData();
             AsyncTaskCompat.executeParallel(new LoadBuckets(true));
         }
     }
@@ -256,5 +265,34 @@ public class BucketListFragment extends Fragment {
         }
     }
 
+    //set up the swipe to delete feature
+    public void setSwipeForRecyclerView() {
+        SwipeUtils swipeHelper = new SwipeUtils(0, ItemTouchHelper.LEFT, getActivity()) {
+
+            //onSwiped() will be called after item being swiped all the way to one side and dropped
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                Log.i("Yuan DBG : ", "swipe called!!!");
+                int swipedPosition = viewHolder.getAdapterPosition();   //get which item is swiped
+                BucketListAdaptor adaptor = (BucketListAdaptor) recyclerView.getAdapter();
+                adaptor.pendingRemoval(swipedPosition); //start the pending removal process
+            }
+
+            @Override
+            public int getSwipeDirs(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                int position = viewHolder.getAdapterPosition();
+                BucketListAdaptor adaptor = (BucketListAdaptor) recyclerView.getAdapter();
+                if(adaptor.isPendingRemoval(position)) {
+                    return 0;
+                }
+                return super.getSwipeDirs(recyclerView, viewHolder);
+            }
+        };
+
+        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(swipeHelper);
+        mItemTouchHelper.attachToRecyclerView(recyclerView);
+        swipeHelper.setLeftSwipeLable("Delete");
+        swipeHelper.setLeftcolorCode(ContextCompat.getColor(getActivity(), R.color.swipe_bg));
+    }
 
 }

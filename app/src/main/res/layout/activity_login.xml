@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
         android:text="@string/activity_login_btn"
+        android:textAllCaps="false"
         style="@style/AppTheme.TextView.Clickable.2.White"/>
 
 </LinearLayout>
