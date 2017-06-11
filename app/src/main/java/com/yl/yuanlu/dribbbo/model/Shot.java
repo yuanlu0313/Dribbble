@@ -14,6 +14,7 @@ public class Shot {
     public String id;
     public String title;
     public String description;
+    public String html_url;
 
     public Map<String, String> images;
     public boolean animated;

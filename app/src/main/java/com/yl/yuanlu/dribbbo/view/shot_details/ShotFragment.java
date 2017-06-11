@@ -254,4 +254,13 @@ public class ShotFragment extends Fragment {
         }
     }
 
+    //share function, done through Implicit Intent
+    public void share() {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shot.title + " " + shot.html_url);
+        shareIntent.setType("text/plain");
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_shot_title)));
+    }
+
 }

@@ -80,6 +80,14 @@ public class ShotAdaptor extends RecyclerView.Adapter {
                 }
             });
 
+            //share button
+            shotInfoViewHolder.actionShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    shotFragment.share();
+                }
+            });
+
             //toggle the like button color based on whether liked
             if(!shot.liked) shotInfoViewHolder.actionLike.setImageResource(R.drawable.ic_favorite_border_black_18dp);
             else shotInfoViewHolder.actionLike.setImageResource(R.drawable.ic_favorite_pink_400_18dp);

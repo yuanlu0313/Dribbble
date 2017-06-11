@@ -109,7 +109,7 @@ public abstract class SwipeUtils extends ItemTouchHelper.SimpleCallback {
 
 
         //Setting up Swipe Icon
-        deleteIcon.setBounds(xMarkLeft, xMarkTop + 20, xMarkRight, xMarkBottom + 20);
+        deleteIcon.setBounds(xMarkLeft, xMarkTop + 23, xMarkRight, xMarkBottom + 23);
         deleteIcon.draw(c);
 
         //Setting up Swipe Text "Delete"
@@ -117,7 +117,7 @@ public abstract class SwipeUtils extends ItemTouchHelper.SimpleCallback {
         paint.setColor(Color.WHITE);
         paint.setTextSize(48);
         paint.setTextAlign(Paint.Align.CENTER);
-        c.drawText(getLeftSwipeLable(), xMarkLeft + 40, xMarkTop + 10, paint);
+        c.drawText(getLeftSwipeLable(), xMarkLeft + 30, xMarkTop + 13, paint);
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
